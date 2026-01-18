@@ -12,12 +12,12 @@ if(isset($_SESSION['userid'])){
 ?>
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
+<?php include '../heading.php' ?>
+
 <body>
     <h2>Admin Dashboard welcome, <?php echo $_SESSION['user_name']; ?></h2>
+    <a href="../logout.php">Logout</a>
+    <br>
+    <a href="add_book.php">Add New Book</a>
 </body>
 </html>
