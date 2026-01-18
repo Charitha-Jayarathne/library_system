@@ -90,7 +90,7 @@ include 'header.php';
         color: #64748b;
         line-height: 1.6;
     }
-    
+
     @media (max-width: 768px) {
         .dashboard-container {
             padding: 20px 16px;
@@ -126,7 +126,7 @@ include 'header.php';
                 <h3>Return Books</h3>
                 <p>Return your borrowed books easily</p>
             </a>
-            <a href="dashboard.php" class="action-card">
+            <a href="my_books.php" class="action-card">
                 <div class="action-icon">📋</div>
                 <h3>My Books</h3>
                 <p>View all your borrowed books history</p>

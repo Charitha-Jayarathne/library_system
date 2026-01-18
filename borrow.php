@@ -22,14 +22,23 @@ if ($userRole === 'admin') {
 if (isset($_GET['book_id'])) {
     $book_id = mysqli_real_escape_string($conn, $_GET['book_id']);
 
-    $borrowSql = "INSERT INTO transactions (user_id, book_id, issue_date, status) VALUES ('$userId', '$book_id', CURDATE(), 'borrowed')";
-    $borrowResult = mysqli_query($conn, $borrowSql);
+    // Check if book is still available
+    $checkQty = mysqli_query($conn, "SELECT quantity FROM books WHERE id='$book_id' AND quantity > 0");
+    if ($checkQty && mysqli_num_rows($checkQty) > 0) {
+        $borrowSql = "INSERT INTO transactions (user_id, book_id, issue_date, status) VALUES ('$userId', '$book_id', CURDATE(), 'borrowed')";
+        $updateQty = "UPDATE books SET quantity = quantity - 1 WHERE id='$book_id'";
+        
+        $borrowResult = mysqli_query($conn, $borrowSql);
+        $qtyResult = mysqli_query($conn, $updateQty);
 
-    if ($borrowResult) {
-        header("Location: dashboard.php?borrow=success");
-        exit();
+        if ($borrowResult && $qtyResult) {
+            header("Location: dashboard.php?borrow=success");
+            exit();
+        } else {
+            $error = "Error borrowing book: " . mysqli_error($conn);
+        }
     } else {
-        $error = "Error borrowing book: " . mysqli_error($conn);
+        $error = "Book is no longer available.";
     }
 }
 
