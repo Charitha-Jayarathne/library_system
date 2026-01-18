@@ -1,1 +1,3 @@
-Hello from index
+<?php
+session_start();
+?>
