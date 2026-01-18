@@ -37,6 +37,9 @@ if($_SERVER['REQUEST_METHOD']=='POST'){
 </head>
 <body>
     <div class="add-book-container">
+        <div style="width: 100%; max-width: 500px; margin-bottom: 20px;">
+            <a href="admindashboard.php" style="display: inline-block; padding: 10px 20px; background: linear-gradient(135deg, #1e293b 0%, #334155 100%); color: #ffffff; text-decoration: none; border-radius: 6px; font-weight: 600; transition: all 0.2s ease;">← Back to Dashboard</a>
+        </div>
         <form action="add_book.php" method="POST" enctype="multipart/form-data" class="add-book-form">
             <h2>Add New Book</h2>
             <?php if($message): ?>
